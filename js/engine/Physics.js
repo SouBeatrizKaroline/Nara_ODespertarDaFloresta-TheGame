@@ -36,8 +36,12 @@ class Physics {
   static resolveVertical(entity, platforms, dt, droppedOneWay = false) {
     entity.onGround = false;
 
+    const previousBottom = entity.y - entity.vy * dt + entity.height;
+    const currentBottom = entity.y + entity.height;
+
     for (const p of platforms) {
-      if (this.checkOverlap(entity, p)) {
+      const crossedTop = previousBottom <= p.y + 4 && currentBottom >= p.y;
+      if (this.checkOverlap(entity, p) || (entity.vy >= 0 && crossedTop && entity.x + entity.width > p.x && entity.x < p.x + p.width)) {
         if (p.isOneWay) {
           // Only land if falling downward and player's feet were previously above or near the top
           const prevY = entity.y - entity.vy * dt;

@@ -230,6 +230,11 @@ class Game {
       this.triggerHazardRespawn();
     }
 
+    // Safety net for any missed collision or custom level gap.
+    if (this.player.y > 620) {
+      this.triggerHazardRespawn();
+    }
+
     // Checkpoint Shrines
     for (const cp of this.level.checkpoints) {
       cp.update(dt, this.player, this.sound, this.particleSystem);
