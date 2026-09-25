@@ -22,6 +22,8 @@ class Physics {
     for (const p of platforms) {
       if (p.isOneWay) continue; // One-way platforms don't block horizontally
       if (this.checkOverlap(entity, p)) {
+        // Standing on the top of a platform is vertical contact, not a wall.
+        if (entity.y + entity.height <= p.y + 20) continue;
         if (entity.vx > 0) {
           entity.x = p.x - entity.width;
           entity.vx = 0;

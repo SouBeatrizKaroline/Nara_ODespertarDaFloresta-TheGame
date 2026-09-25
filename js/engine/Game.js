@@ -215,6 +215,7 @@ class Game {
     // Physics Collisions
     window.LumiGame.Physics.resolveHorizontal(this.player, this.level.platforms);
     window.LumiGame.Physics.resolveVertical(this.player, this.level.platforms, dt, this.player.droppedOneWay);
+    this.player.x = Math.max(0, Math.min(this.level.worldWidth - this.player.width, this.player.x));
 
     // Bouncy Mushroom Checks
     const bounced = window.LumiGame.Physics.checkMushroomBounce(this.player, this.level.mushrooms);
