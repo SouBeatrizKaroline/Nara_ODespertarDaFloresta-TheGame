@@ -1,6 +1,8 @@
-# 🌟 Lumi & the Lost Stars (Lumi&TheLostStars_TheGame)
+# 🌟 Lumi e a Floresta Estelar
 
 > Um jogo web 2D poético e aconchegante com foco em exploração, plataforma suave, coleta de estrelas e transformação mágica do mundo.
+
+O título público do jogo é **Lumi e a Floresta Estelar**. Para o GitHub, o nome curto recomendado é `lumi-starbound-forest`.
 
 ---
 
@@ -133,4 +135,4 @@ O jogo foi construído para rodar diretamente em qualquer navegador moderno:
    Acesse no navegador: `http://localhost:8000`
 
 ---
-*Criado com carinho para Lumi & the Lost Stars.*
+*Criado com carinho para Lumi e a Floresta Estelar.*

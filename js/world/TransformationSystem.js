@@ -1,0 +1,1 @@
+window.LumiGame=window.LumiGame||{}; class TransformationSystem{constructor(){this.progress=0;} updateProgress(found,total){this.progress=found/total;} update(){} } window.LumiGame.TransformationSystem=TransformationSystem;
