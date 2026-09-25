@@ -72,6 +72,16 @@ class Game {
     this.transformSys.updateProgress(mainFound, 20);
   }
 
+  updateNaraForm() {
+    const progress = this.transformSys.progress;
+    const inDarkGrove = this.player.x < 800 && progress < 0.25;
+    const nextColor = inDarkGrove ? '#171a22' : progress >= 0.5 ? '#f4f1e8' : '#8e969f';
+    if (this.player.setFurColor(nextColor)) {
+      const message = nextColor === '#171a22' ? 'Nara assumiu a forma sombria da floresta.' : nextColor === '#f4f1e8' ? 'A luz despertou a forma branca de Nara!' : 'Nara voltou à sua forma cinza.';
+      this.hud.showToast(message);
+    }
+  }
+
   triggerHazardRespawn() {
     if (this.player.isRespawning) return;
     this.player.isRespawning = true;
@@ -252,6 +262,7 @@ class Game {
 
     // Environmental & Particle updates
     this.transformSys.update(dt, this.hud, this.sound, this.particleSystem);
+    this.updateNaraForm();
     this.environmentFX.update(dt, this.player, this.transformSys);
     this.particleSystem.update(dt);
 

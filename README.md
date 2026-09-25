@@ -8,7 +8,7 @@ O título público do jogo é **Nara: O Despertar da Floresta**. Para o GitHub, 
 
 ## ✨ Conceito & História
 
-A protagonista é **Nara**, uma pequena gata preta/chumbo com grandes olhos expressivos, uma capa azul esvoaçante e um pingente em formato de estrela no peito. 
+A protagonista é **Nara**, uma raposa cinza com grandes olhos expressivos, uma capa azul esvoaçante e um pingente em formato de estrela no peito.
 
 Ao despertar em uma floresta mágica e silenciosa após as estrelas desaparecerem do firmamento, Nara descobre que fragmentos dessas estrelas caíram entre a vegetação. Sua missão é explorar o cenário, reunir os fragmentos e devolver a luz e a vida à floresta ancestral.
 
@@ -34,7 +34,10 @@ Ao despertar em uma floresta mágica e silenciosa após as estrelas desaparecere
 
 ## 🌌 Mecânica Central: A Transformação da Floresta
 
-Conforme Nara recupera os fragmentos perdidos, o mundo se transforma em tempo real:
+Conforme Nara recupera os fragmentos perdidos, o mundo se transforma em tempo real. A cor da raposa também acompanha a jornada:
+- **Forma cinza**: estado natural de Nara.
+- **Forma preta**: aparece no bosque ainda sem luz, enquanto a floresta está abaixo de 25% de restauração.
+- **Forma branca**: é despertada quando Nara recupera metade da luz da floresta, a partir de 50% de progresso.
 - **0% — Floresta Escura & Silenciosa**: Tons frios de azul-marinho, escuridão calma e som ambiente minimalista.
 - **25% — Cogumelos Bioluminescentes**: Cogumelos ganham brilho dourado e ciano; primeiros vagalumes começam a dançar no ar.
 - **50% — Desabrochar da Flora**: Flores mágicas se abrem pelo caminho, plantas adquirem aura radiante e esporos mágicos flutuam.
@@ -46,19 +49,19 @@ Conforme Nara recupera os fragmentos perdidos, o mundo se transforma em tempo re
 ## 🗺️ Estrutura do Mapa
 
 Uma fase contínua, densa e repleta de segredos detalhados:
-1. **Início da Floresta**: Primeiro despertar de Lumi, vegetação suave e primeiros fragmentos.
-2. **Área dos Cogumelos Luminosos**: Cogumelos elásticos que lançam Lumi a grandes alturas e galhos no dossel florestal (*Esconde a Estrela Secreta #1*).
+1. **Início da Floresta**: Primeiro despertar de Nara, vegetação suave e primeiros fragmentos.
+2. **Área dos Cogumelos Luminosos**: Cogumelos elásticos que lançam Nara a grandes alturas e galhos no dossel florestal (*Esconde a Estrela Secreta #1*).
 3. **Pequena Ponte de Madeira**: Ponte rústica em arco sobre um desfiladeiro com lanternas acesas (*Viga oculta sob a ponte esconde a Estrela Secreta #2*).
 4. **Riacho Encantado**: Cachoeira ao fundo, pedras de travessia e troncos flutuantes sobre a água cristalina.
 5. **Clareira das Flores**: Prado florido com ruínas de pedra ancestral (*Topo do arco em ruínas esconde a Estrela Secreta #3*).
-6. **Árvore Ancestral**: O grande santuário final onde Lumi devolve a luz recolhida.
+6. **Árvore Ancestral**: O grande santuário final onde Nara devolve a luz recolhida.
 
 ---
 
 ## 🌳 O Clímax Final
 
 Ao reunir as **20 estrelas principais** e alcançar o pedestal da Árvore Ancestral:
-1. Lumi se aproxima do tronco sagrado.
+1. Nara se aproxima do tronco sagrado.
 2. Os fragmentos coletados saem em espiral do seu pingente estelar.
 3. As estrelas circundam a copa da árvore, fazendo-a explodir em luz dourada e azul celeste.
 4. As flores ao redor florescem instantaneamente.
@@ -87,7 +90,7 @@ Acessível através do botão de engrenagem (**⚙️**) no topo da tela:
 Projeto 100% modular, sem dependências externas ou bundlers pesados, funcionando de forma nativa e imediata em qualquer navegador:
 
 ```
-Lumi&TheLostStars_TheGame/
+Nara_ODespertarDaFloresta-TheGame/
 ├── index.html                  # Estrutura semântica e montagem de módulos
 ├── README.md                   # Documentação completa
 ├── css/
@@ -129,7 +132,7 @@ O jogo foi construído para rodar diretamente em qualquer navegador moderno:
 1. **Abrir diretamente**: Basta dar um duplo clique em `index.html`.
 2. **Ou via servidor local (recomendado)**:
    ```bash
-   cd "Lumi&TheLostStars_TheGame"
+   cd "Nara_ODespertarDaFloresta-TheGame"
    python3 -m http.server 8000
    ```
    Acesse no navegador: `http://localhost:8000`
