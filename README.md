@@ -1,27 +1,27 @@
-# 🌟 Lumi e a Floresta Estelar
+# 🌟 Nara: O Despertar da Floresta
 
 > Um jogo web 2D poético e aconchegante com foco em exploração, plataforma suave, coleta de estrelas e transformação mágica do mundo.
 
-O título público do jogo é **Lumi e a Floresta Estelar**. Para o GitHub, o nome curto recomendado é `lumi-starbound-forest`.
+O título público do jogo é **Nara: O Despertar da Floresta**. Para o GitHub, o nome recomendado é `nara-o-despertar-da-floresta`.
 
 ---
 
 ## ✨ Conceito & História
 
-A protagonista é **Lumi**, uma pequena gata preta/chumbo com grandes olhos expressivos, uma capa azul esvoaçante e um pingente em formato de estrela no peito. 
+A protagonista é **Nara**, uma pequena gata preta/chumbo com grandes olhos expressivos, uma capa azul esvoaçante e um pingente em formato de estrela no peito. 
 
-Ao despertar em uma floresta mágica e silenciosa após as estrelas desaparecerem do firmamento, Lumi descobre que fragmentos dessas estrelas caíram entre a vegetação. Sua missão é explorar o cenário, reunir os fragmentos e devolver a luz e a vida à floresta ancestral.
+Ao despertar em uma floresta mágica e silenciosa após as estrelas desaparecerem do firmamento, Nara descobre que fragmentos dessas estrelas caíram entre a vegetação. Sua missão é explorar o cenário, reunir os fragmentos e devolver a luz e a vida à floresta ancestral.
 
 - **Atmosfera**: Curiosidade, tranquilidade, magia, conto de fadas e sensação palpável de progresso.
 - **Sem combate ou punição**: Uma experiência relaxante focada no prazer da exploração.
-- **Sem Game Over**: Ao cair na água ou em fendas, Lumi dissolve em partículas de poeira estelar e reaparece imediatamente no último santuário seguro (checkpoint).
+- **Sem Game Over**: Ao cair na água ou em fendas, Nara dissolve em partículas de poeira estelar e reaparece imediatamente no último santuário seguro (checkpoint).
 
 ---
 
 ## 🎮 Controles
 
 ### Computador (Teclado)
-- **A / D** ou **Setas Esquerda / Direita**: Movimentar Lumi (andar e correr)
+- **A / D** ou **Setas Esquerda / Direita**: Movimentar Nara (andar e correr)
 - **Espaço / W / Seta para Cima**: Pular (com altura variável e assistência de salto)
 - **S / Seta para Baixo + Pulo**: Descer de plataformas translúcidas (one-way platforms)
 - **Esc**: Abrir menu de Configurações e Acessibilidade
@@ -34,7 +34,7 @@ Ao despertar em uma floresta mágica e silenciosa após as estrelas desaparecere
 
 ## 🌌 Mecânica Central: A Transformação da Floresta
 
-Conforme Lumi recupera os fragmentos perdidos, o mundo se transforma em tempo real:
+Conforme Nara recupera os fragmentos perdidos, o mundo se transforma em tempo real:
 - **0% — Floresta Escura & Silenciosa**: Tons frios de azul-marinho, escuridão calma e som ambiente minimalista.
 - **25% — Cogumelos Bioluminescentes**: Cogumelos ganham brilho dourado e ciano; primeiros vagalumes começam a dançar no ar.
 - **50% — Desabrochar da Flora**: Flores mágicas se abrem pelo caminho, plantas adquirem aura radiante e esporos mágicos flutuam.
@@ -135,4 +135,4 @@ O jogo foi construído para rodar diretamente em qualquer navegador moderno:
    Acesse no navegador: `http://localhost:8000`
 
 ---
-*Criado com carinho para Lumi e a Floresta Estelar.*
+*Criado com carinho para Nara: O Despertar da Floresta.*

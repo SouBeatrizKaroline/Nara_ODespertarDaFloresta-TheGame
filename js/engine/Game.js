@@ -94,7 +94,7 @@ class Game {
       this.player.y + this.player.height / 2
     );
 
-    this.hud.showToast("Lumi retornou em segurança ao santuário.");
+    this.hud.showToast("Nara retornou em segurança ao santuário.");
   }
 
   checkStarCollections() {
