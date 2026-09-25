@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lumi & the Lost Stars</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hud.css">
+  <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Main 2D Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- Ambient Vignette -->
+    <div class="ambient-vignette"></div>
+
+    <!-- Soft Screen Fade for Safe Checkpoint Respawns -->
+    <div id="screen-fade"></div>
+
+    <!-- Heads Up Display (HUD) -->
+    <div id="game-hud">
+      <div class="hud-top-bar">
+        <!-- Star Counters Group -->
+        <div class="hud-counters-group">
+          <!-- Main Stars Counter -->
+          <div class="hud-counter-pill" id="hud-pill-main" title="Fragmentos de Estrela">
+            <span class="hud-icon star-main">⭐</span>
+            <span class="hud-counter-text" id="hud-main-stars">0/20</span>
+          </div>
+
+          <!-- Secret Stars Counter -->
+          <div class="hud-counter-pill secret" id="hud-pill-secret" title="Estrelas Secretas">
+            <span class="hud-icon star-secret">✦</span>
+            <span class="hud-counter-text" id="hud-secret-stars">0/3</span>
+          </div>
+        </div>
+
+        <!-- Zone Name Toast / Banner -->
+        <div class="hud-zone-pill" id="hud-zone-pill">Início da Floresta</div>
+
+        <!-- Action / Settings Buttons -->
+        <div class="hud-actions-group">
+          <button class="hud-btn" id="btn-sound" title="Alternar Som" aria-label="Som">🎵</button>
+          <button class="hud-btn" id="btn-settings" title="Configurações e Acessibilidade" aria-label="Configurações">⚙️</button>
+        </div>
+      </div>
+
+      <!-- Progressive Forest Transformation Bar (Subtle) -->
+      <div class="hud-progress-wrapper">
+        <span class="hud-progress-label">Luz da Floresta</span>
+        <div class="hud-progress-bar-bg">
+          <div class="hud-progress-bar-fill" id="hud-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- In-Game Toast Notifications -->
+      <div id="hud-toast">A floresta aguarda sua luz...</div>
+
+      <!-- On-Screen Touch Controls (Mobile / Tablet) -->
+      <div id="touch-controls">
+        <div class="touch-dpad">
+          <button class="touch-btn" id="touch-left" aria-label="Mover para esquerda">◀</button>
+          <button class="touch-btn" id="touch-right" aria-label="Mover para direita">▶</button>
+        </div>
+        <button class="touch-btn touch-btn-jump" id="touch-jump" aria-label="Pular">▲</button>
+      </div>
+    </div>
+
+    <!-- Settings & Accessibility Modal -->
+    <div class="modal-backdrop" id="settings-modal" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 class="modal-title">Configurações</h2>
+          <button class="modal-close-btn" id="btn-close-settings" aria-label="Fechar">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Reduce Motion -->
+          <div class="setting-item">
+            <div class="setting-label-group">
+              <span class="setting-label">Reduzir Movimento</span>
+              <span class="setting-desc">Desativa animações intensas de interface</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-reduce-motion">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Screen Shake -->
+          <div class="setting-item">
+            <div class="setting-label-group">
+              <span class="setting-label">Tremor de Tela</span>
+              <span class="setting-desc">Ativa ou desativa tremor suave da câmera</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-screen-shake" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- High Contrast -->
+          <div class="setting-item">
+            <div class="setting-label-group">
+              <span class="setting-label">Alto Contraste</span>
+              <span class="setting-desc">Aumenta nitidez e visibilidade dos elementos</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-high-contrast">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Music Volume -->
+          <div class="setting-item">
+            <div class="setting-label-group">
+              <span class="setting-label">Volume da Música</span>
+              <span class="setting-desc">Trilha ambiente suave em tempo real</span>
+            </div>
+            <div class="range-slider-wrapper">
+              <input type="range" class="range-slider" id="slider-music-volume" min="0" max="1" step="0.05" value="0.55">
+            </div>
+          </div>
+
+          <!-- SFX Volume -->
+          <div class="setting-item">
+            <div class="setting-label-group">
+              <span class="setting-label">Volume dos Efeitos</span>
+              <span class="setting-desc">Sons de pulo, estrelas e passos</span>
+            </div>
+            <div class="range-slider-wrapper">
+              <input type="range" class="range-slider" id="slider-sfx-volume" min="0" max="1" step="0.05" value="0.75">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Climax / Ending Screen Overlay -->
+    <div id="ending-screen">
+      <p class="ending-quote" id="ending-quote">“The forest remembers its light.”</p>
+      <h1 class="ending-title">Lumi & the Lost Stars</h1>
+
+      <div class="ending-stats-card">
+        <div class="ending-stat-row">
+          <span style="color: #ffd152;">⭐</span>
+          <span id="ending-stat-main">Estrelas encontradas: 20/20</span>
+        </div>
+        <div class="ending-stat-row">
+          <span style="color: #e056fd;">✦</span>
+          <span id="ending-stat-secret">✦ Estrelas secretas: 3/3</span>
+        </div>
+      </div>
+
+      <div class="ending-btn-group">
+        <button class="btn-primary" id="btn-restart">Jogar novamente</button>
+        <button class="btn-secondary" id="btn-explore">Explorar a floresta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts in Clean Modular Order -->
+  <script src="js/audio/SoundManager.js"></script>
+  <script src="js/engine/Input.js"></script>
+  <script src="js/engine/Camera.js"></script>
+  <script src="js/engine/Physics.js"></script>
+  <script src="js/entities/ParticleSystem.js"></script>
+  <script src="js/entities/Star.js"></script>
+  <script src="js/entities/Checkpoint.js"></script>
+  <script src="js/entities/Lumi.js"></script>
+  <script src="js/world/TransformationSystem.js"></script>
+  <script src="js/world/EnvironmentFX.js"></script>
+  <script src="js/world/LevelData.js"></script>
+  <script src="js/world/WorldRenderer.js"></script>
+  <script src="js/ui/HUD.js"></script>
+  <script src="js/ui/SettingsModal.js"></script>
+  <script src="js/ui/EndingScreen.js"></script>
+  <script src="js/ui/TouchControls.js"></script>
+  <script src="js/engine/Game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

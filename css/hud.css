@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Lumi & the Lost Stars - Heads Up Display (HUD) & Touch Controls
+   ========================================================================== */
+
+#game-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+
+/* Top Bar */
+.hud-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.hud-counters-group {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.hud-counter-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 20, 42, 0.72);
+  border: 1px solid rgba(155, 176, 219, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
+}
+
+.hud-counter-pill.bump {
+  transform: scale(1.18);
+  border-color: rgba(255, 209, 82, 0.8);
+}
+
+.hud-counter-pill.secret.bump {
+  border-color: rgba(224, 102, 255, 0.9);
+}
+
+.hud-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.hud-icon.star-main {
+  color: var(--color-star-gold);
+  text-shadow: 0 0 12px var(--color-star-gold);
+  animation: starPulse 3s infinite ease-in-out;
+}
+
+.hud-icon.star-secret {
+  color: var(--color-secret-purple);
+  text-shadow: 0 0 14px var(--color-secret-purple);
+  animation: secretPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.12); filter: brightness(1.25); }
+}
+
+@keyframes secretPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(4deg); }
+}
+
+.hud-counter-text {
+  font-variant-numeric: tabular-nums;
+  color: #f7f9ff;
+}
+
+/* Zone indicator banner */
+.hud-zone-pill {
+  background: rgba(13, 20, 42, 0.65);
+  border: 1px solid rgba(155, 176, 219, 0.18);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #c4d7fc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hud-zone-pill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Action Buttons (Right top) */
+.hud-actions-group {
+  display: flex;
+  gap: 10px;
+}
+
+.hud-btn {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(13, 20, 42, 0.72);
+  border: 1px solid rgba(155, 176, 219, 0.25);
+  backdrop-filter: blur(8px);
+  color: #e3ebfa;
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hud-btn:hover {
+  background: rgba(30, 45, 90, 0.85);
+  border-color: rgba(200, 220, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.hud-btn:active {
+  transform: scale(0.92);
+}
+
+/* In-game Toast Notification */
+#hud-toast {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(15, 23, 49, 0.88);
+  border: 1px solid rgba(138, 175, 245, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: #e9f0ff;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 25;
+}
+
+#hud-toast.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Forest Transformation Progress Ribbon (Bottom center, subtle) */
+.hud-progress-wrapper {
+  position: absolute;
+  top: 72px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hud-progress-bar-bg {
+  width: 140px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hud-progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #4da3ff, #ffe57f);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 8px #ffe57f;
+}
+
+.hud-progress-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Touch Controls for Mobile / Tablet */
+#touch-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+  padding: 0 28px;
+  display: none; /* activated when touch supported */
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.touch-dpad {
+  display: flex;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.touch-btn {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(61, 123, 240, 0.45), rgba(15, 25, 55, 0.75));
+  border: 2px solid rgba(160, 195, 255, 0.4);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.15);
+  touch-action: manipulation;
+  user-select: none;
+  transition: background 0.1s, transform 0.1s;
+}
+
+.touch-btn:active, .touch-btn.active {
+  background: radial-gradient(circle at 50% 50%, rgba(90, 150, 255, 0.85), rgba(30, 50, 100, 0.95));
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(0.92);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 18px rgba(100, 170, 255, 0.6);
+}
+
+.touch-btn-jump {
+  width: 78px;
+  height: 78px;
+  font-size: 1.6rem;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 209, 82, 0.45), rgba(40, 30, 20, 0.75));
+  border-color: rgba(255, 225, 128, 0.5);
+}
+
+.touch-btn-jump:active, .touch-btn-jump.active {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 220, 100, 0.85), rgba(90, 60, 20, 0.95));
+  border-color: #ffffff;
+  box-shadow: 0 0 22px rgba(255, 215, 80, 0.7);
+}
+
+/* Touch controls visible when touch detected */
+body.touch-enabled #touch-controls {
+  display: flex;
+}
